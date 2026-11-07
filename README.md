@@ -2,7 +2,7 @@
 
 Сайт цифрового методолога на Vite, React и TypeScript.
 
-Репозиторий: https://github.com/dubininaa/resume_metodology
+Репозиторий: https://github.com/dubininaa/resume_methodology
 
 ## Локальный запуск
 
@@ -24,14 +24,14 @@ npm run build
 Для проверки сборки с путями GitHub Pages:
 
 ```bash
-BASE_PATH=/resume_metodology/ npm run build
+BASE_PATH=/resume_methodology/ npm run build
 ```
 
 ## Публикация
 
 Workflow `.github/workflows/deploy.yml` собирает сайт и публикует его при отправке изменений в `main`. Для публикации выберите **GitHub Actions** в настройках репозитория **Settings → Pages → Source**.
 
-Адрес сайта после успешной публикации: https://dubininaa.github.io/resume_metodology/
+Адрес сайта после успешной публикации: https://dubininaa.github.io/resume_methodology/
 
 ## Основные файлы
 
