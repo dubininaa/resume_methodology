@@ -454,21 +454,21 @@ export default function Portfolio() {
               role="dialog"
               aria-modal="true"
               aria-labelledby="portfolio-modal-title"
-              className="relative flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden border border-white/10 bg-black text-white"
+              className="relative flex max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden border border-gray-200 bg-gray-50 text-gray-900"
               initial={{ y: 40, scale: 0.98, opacity: 0 }}
               animate={{ y: 0, scale: 1, opacity: 1 }}
               exit={{ y: 20, scale: 0.98, opacity: 0 }}
               transition={{ duration: 0.25 }}
             >
-              <div className="flex items-start justify-between border-b border-white/10 bg-black px-6 py-5">
+              <div className="flex items-start justify-between border-b border-gray-200 bg-white px-6 py-5">
                 <div>
                   <h3 id="portfolio-modal-title" className="text-2xl font-display font-black uppercase">{active.title}</h3>
-                  <p className="mt-2 text-base text-white/70 max-w-2xl">{active.subtitle}</p>
+                  <p className="mt-2 text-base text-gray-600 max-w-2xl">{active.subtitle}</p>
                 </div>
                 <button
                   type="button"
                   onClick={closeProject}
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-white/20 bg-white/5 text-white transition hover:bg-white hover:text-black"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-gray-300 bg-white text-gray-900 transition hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   aria-label="Закрыть"
                 >
                   <X size={18} />
@@ -477,28 +477,29 @@ export default function Portfolio() {
 
               <div className="min-h-0 flex-1 overflow-y-auto">
                 <div className="grid gap-6 lg:grid-cols-[1fr_auto] p-8">
-                  <div className="rounded-none border border-white/10 bg-white/5 p-6">
+                  <div className="rounded-none border border-gray-200 bg-white p-6">
                     <h4 className="text-xl font-display font-black uppercase">
-                      {activePage === 0 ? "О курсе" : "Что сделано"}
+                      {activePage === 0 ? "Что сделано" : "О курсе"}
                     </h4>
-                    <div className="mt-4 text-base leading-7 text-white/75" style={{ whiteSpace: "pre-line" }}>
-                      {activePage === 0 ? active.screen1Text : active.screen2Text}
+                    <div className="mt-4 text-base leading-7 text-gray-800" style={{ whiteSpace: "pre-line" }}>
+                      {activePage === 0 ? active.screen2Text : active.screen1Text}
                     </div>
                   </div>
 
                   <div className="flex flex-col items-stretch gap-3 lg:w-52">
                     {[
-                      { label: "О курсе", page: 0 },
-                      { label: "Что сделано", page: 1 },
+                      { label: "Что сделано", page: 0 },
+                      { label: "О курсе", page: 1 },
                     ].map((button) => (
                       <button
                         key={button.page}
                         type="button"
+                        aria-pressed={activePage === button.page}
                         onClick={() => setActivePage(button.page)}
-                        className={`rounded-none border px-4 py-4 text-base uppercase tracking-[0.3em] transition ${
+                        className={`rounded-none border px-4 py-4 text-base uppercase tracking-[0.3em] transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black ${
                           activePage === button.page
                             ? "border-primary bg-primary text-black"
-                            : "border-white/10 bg-white/5 text-white/80 hover:border-primary hover:text-white"
+                            : "border-gray-300 bg-white text-gray-700 hover:border-gray-900 hover:bg-gray-100 hover:text-black"
                         }`}
                       >
                         {button.label}
@@ -518,14 +519,14 @@ export default function Portfolio() {
                 </div>
 
                 {active.gallery.length > 0 && (
-                  <div className="border-t border-white/10 px-8 py-6">
+                  <div className="border-t border-gray-200 px-8 py-6">
                     <div className="grid gap-4 sm:grid-cols-2">
                       {active.gallery.map((image, index) => (
                         <img
                           key={index}
                           src={image}
                           alt={`${active.title} screenshot ${index + 1}`}
-                          className="w-full h-64 object-cover rounded-sm border border-white/10"
+                          className="w-full h-64 object-cover rounded-sm border border-gray-200"
                         />
                       ))}
                     </div>
