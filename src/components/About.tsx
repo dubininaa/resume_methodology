@@ -77,7 +77,7 @@ export default function About() {
                 <div className="text-5xl font-display font-black text-primary mb-2">
                   <Counter to={1} suffix="+" triggered={inView} />
                 </div>
-                <div className="text-sm uppercase tracking-widest text-gray-400">год опыта в&nbsp;менеджменте</div>
+                <div className="text-sm uppercase tracking-widest text-gray-400">год опыта в&nbsp;менеджменте образовательных проектов</div>
               </div>
               <div>
                 <div className="text-5xl font-display font-black text-primary mb-2">
