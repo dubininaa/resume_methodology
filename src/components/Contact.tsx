@@ -1,10 +1,9 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 
 export default function Contact() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const [showPhone, setShowPhone] = useState(false);
 
   return (
     <section id="contact" className="py-24 bg-primary" ref={ref}>
@@ -45,12 +44,6 @@ export default function Contact() {
             >
               Мой Telegram-канал
             </a>
-            <button
-              onClick={() => setShowPhone((v) => !v)}
-              className="inline-flex items-center justify-center px-8 py-4 border-2 border-black bg-transparent text-black font-bold uppercase tracking-wider text-sm hover:bg-black hover:text-white transition-colors duration-300"
-            >
-              {showPhone ? "8 960 792-41-91" : "Телефон"}
-            </button>
             <a
               href="mailto:n.valvenkina@gmail.com"
               className="inline-flex items-center justify-center px-8 py-4 bg-black text-white font-bold uppercase tracking-wider text-sm hover:bg-white hover:text-black transition-colors duration-300"

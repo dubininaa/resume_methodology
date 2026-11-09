@@ -73,7 +73,7 @@
 .sample-workbook th, .sample-workbook td { border: 1px solid #ccc; padding: 12px; min-width: 110px; vertical-align: top; white-space: pre-line; }
 .sample-workbook th { background: #e2e2db; font-weight: 600; text-align: left; }
 .sample-answer { display: block; color: #888; font-size: 16px; min-height: 20px; }
-.work-samples button:focus-visible, .sample-dialog button:focus-visible, .sample-detail summary:focus-visible, .sample-table-scroll:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 4px; }
+.work-samples button:focus-visible, .sample-card:focus-visible, .sample-dialog button:focus-visible, .sample-detail summary:focus-visible, .sample-table-scroll:focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 4px; }
 @media (max-width: 1023px) { .sample-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sample-section-heading { flex-direction: column; align-items: start; gap: 20px; } }
 @media (max-width: 639px) {
   .sample-grid { grid-template-columns: 1fr; gap: 18px; }

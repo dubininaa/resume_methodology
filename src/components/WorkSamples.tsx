@@ -12,6 +12,7 @@ type Group = { title: string; items?: SampleItem[]; blocks?: Block[]; stepLabel?
 type Sample = {
   id: string; title: string; description: string; project: string;
   groups: Group[];
+  externalUrl?: string;
   preview: { type: string; labels: string[]; caption: string };
 };
 const samples: Sample[] = samplesData;
@@ -164,18 +165,28 @@ export default function WorkSamples() {
         </div>
         <Dialog.Root open={active !== null} onOpenChange={open => { if (!open) setActive(null); }}>
           <div className="sample-grid">
-            {samples.map(sample => (
-              <Dialog.Trigger asChild key={sample.id}>
-                <button type="button" className="sample-card" onClick={event => { triggerRef.current = event.currentTarget; setActive(sample); setGroupIndex(0); }}>
+            {samples.map(sample => {
+              const content = <>
                   <Preview sample={sample} />
                   <div className="sample-card-body">
                     <h3>{sample.title}</h3>
                     <p>{sample.description}</p>
-                    <span className="sample-card-action">Смотреть пример <ArrowUpRight size={18} /></span>
+                    <span className="sample-card-action">{sample.externalUrl ? "Смотреть в Google Sheets" : "Смотреть пример"} <ArrowUpRight size={18} /></span>
                   </div>
-                </button>
-              </Dialog.Trigger>
-            ))}
+              </>;
+
+              return sample.externalUrl ? (
+                <a key={sample.id} className="sample-card" href={sample.externalUrl} target="_blank" rel="noopener noreferrer">
+                  {content}
+                </a>
+              ) : (
+                <Dialog.Trigger asChild key={sample.id}>
+                  <button type="button" className="sample-card" onClick={event => { triggerRef.current = event.currentTarget; setActive(sample); setGroupIndex(0); }}>
+                    {content}
+                  </button>
+                </Dialog.Trigger>
+              );
+            })}
           </div>
           {active && (
             <Dialog.Portal>
@@ -196,20 +207,10 @@ export default function WorkSamples() {
                     ))}
                   </nav>}
                   <div className="sample-reader" ref={scrollRef} key={active.id}>
-                    {active.id === "sjm" && group?.stepLabel && (
-                      <nav className="sample-journey" aria-label="Этапы пути студента">
-                        {active.groups.map((stage, index) => stage.stepLabel && (
-                          <button type="button" key={stage.title} aria-current={groupIndex === index ? "step" : undefined} onClick={() => { setGroupIndex(index); scrollRef.current?.scrollTo({ top: 0 }); }}>
-                            <span className="sample-journey-number">{active.groups.filter(g => g.stepLabel).indexOf(stage) + 1}</span>
-                            <span>{stage.stepLabel}<small>{stage.duration}</small></span>
-                          </button>
-                        ))}
-                      </nav>
-                    )}
                     <h4>{group?.title}</h4>
                     {group?.duration && <p className="sample-stage-duration">{group.duration}</p>}
                     {group?.items?.map((item, index) => (
-                      <details className="sample-detail" key={`${groupIndex}-${index}`} open={index === 0 || (active.id === "sjm" && group?.stepLabel) ? true : undefined}>
+                      <details className="sample-detail" key={`${groupIndex}-${index}`} open={index === 0 ? true : undefined}>
                         <summary>{item.title}<ChevronDown size={18} /></summary>
                         <SampleFields fields={item.fields} />
                       </details>
